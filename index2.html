@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday Bestie!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #444;
+        }
+
+        .btn {
+            background: #ff6f61;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        img {
+            width: 250px;
+            border-radius: 15px;
+            margin: 20px 0;
+            height: 400px;
+        }
+
+        #cake {
+            width: 350px;
+            border-radius: 15px;
+            margin: 20px 0;
+            height: 400px;
+        }
+
+        .btn:hover {
+            background: #e55b50;
+        }
+
+        #cakeModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .modal-content img {
+            width: 200px;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎉 Happy Birthday, Bestie! 🎉</h1>
+    <p>Even though we're miles apart, you're always close to my heart ❤️</p>
+    <img src="rakhi1.jpg" alt="Bestie Photo1">
+    <img src="rakhi3.jpg" alt="Bestie Photo2">
+
+    <p>🎶 Check out this playlist I made for you:</p>
+    <iframe data-testid="embed-iframe" style="border-radius:12px"
+        src="https://open.spotify.com/embed/playlist/2RKitdB8gLU5pfoRAUpQky?utm_source=generator" width="100%"
+        height="352" frameBorder="0" allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+    <p>🥳 Can't wait to meet you soon!</p>
+    <button class="btn" onclick="cutCake()">Cut the Cake 🎂</button>
+
+    <!-- Modal -->
+    <div id="cakeModal">
+        <div class="modal-content">
+            <h2>🎂 Here's your cake!</h2>
+            <img id="cake" src="cake.jpg" alt="Cake">
+            <p>Make a wish before you blow out the candles 🕯️✨</p>
+        </div>
+    </div>
+
+    <canvas id="confetti"></canvas>
+    <!-- Birthday song audio -->
+
+    <script>
+        // Show cake modal and trigger confetti
+        function cutCake() {
+            document.getElementById('cakeModal').style.display = 'flex';
+            launchConfetti();
+        }
+
+        // Simple confetti animation
+        function launchConfetti() {
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const pieces = [];
+
+            for (let i = 0; i < 100; i++) {
+                pieces.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 5 + 2,
+                    d: Math.random() * 50 + 10,
+                    color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                    tilt: Math.random() * 10 - 10,
+                    tiltAngle: 0
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                pieces.forEach(p => {
+                    ctx.beginPath();
+                    ctx.fillStyle = p.color;
+                    ctx.arc(p.x + p.tilt, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                update();
+                requestAnimationFrame(draw);
+            }
+
+            function update() {
+                pieces.forEach(p => {
+                    p.y += Math.cos(p.d) + 1;
+                    p.tiltAngle += 0.1;
+                    p.tilt = Math.sin(p.tiltAngle) * 15;
+                    if (p.y > canvas.height) {
+                        p.y = 0;
+                        p.x = Math.random() * canvas.width;
+                    }
+                });
+            }
+
+            draw();
+        }
+    </script>
+
+</body>
+
+</html>
