@@ -82,6 +82,22 @@
             pointer-events: none;
             z-index: 999;
         }
+
+        #surpriseBtn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        #surpriseBtn:hover {
+            background-color: #e0435e;
+        }
     </style>
 </head>
 
@@ -97,6 +113,30 @@
         src="https://open.spotify.com/embed/playlist/2RKitdB8gLU5pfoRAUpQky?utm_source=generator" width="100%"
         height="352" frameBorder="0" allowfullscreen=""
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <button id="surpriseBtn">Surprise for You 🎁</button>
+
+    <div id="secretMessage" style="display:none; margin-top: 20px;">
+        <h2>💌 A Special Message for You</h2>
+        <p>
+            Happy 19th birthday to u buddy❤. May this bday u get everything u want in ur life and get successful and be
+            happy. I just wonder how time flies and we have one year bond now with us and all the memories we had
+            whether its cute talks or fights sometimes.but i will be always grateful to u at the time u come into my
+            life when i actually want a frnd to spend time with and open my heart with i know sometimes i made some
+            wrong decisions but its ok na i am ur bestfrnd so yeah its fine😂. I just wanna say i love u whole heartedly
+            and i meant that❤🫠 (not as a frnd) maybe but nevermind there's no chance for us ofcourse so there's no
+            point of saying that but always remember i love u always my baby and u will he my bestfrnd till life apart
+            us and promise me u will stay with me no matter what challenges will come u have to stay with me there's no
+            other choice .
+            Bs bahut bakwas krli ab meine. Happy birthday once again❤ and enjoy ur day and send me ur hottie pics😂❤❤
+        </p>
+        <div style="margin-top: 20px;">
+            <h3>🔊 Tap to hear something special:</h3>
+            <audio id="bdayAudio" controls>
+                <source src="Recording.m4a" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
 
     <p>🥳 Can't wait to meet you soon!</p>
     <button class="btn" onclick="cutCake()">Cut the Cake 🎂</button>
@@ -105,7 +145,7 @@
     <div id="cakeModal">
         <div class="modal-content">
             <h2>🎂 Here's your cake!</h2>
-            <img id="cake" src="cake.jpg" alt="Cake">
+            <img id="cake" src="ChatGPT Image Aug 8, 2025, 09_31_02 PM.png" alt="Cake">
             <p>Make a wish before you blow out the candles 🕯️✨</p>
         </div>
     </div>
@@ -166,6 +206,14 @@
 
             draw();
         }
+        const surpriseBtn = document.getElementById("surpriseBtn");
+        const secretMessage = document.getElementById("secretMessage");
+
+        surpriseBtn.addEventListener("click", () => {
+            secretMessage.style.display = "block";
+            surpriseBtn.style.display = "none";
+        });
+
     </script>
 
 </body>
